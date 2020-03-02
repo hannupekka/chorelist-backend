@@ -20,7 +20,7 @@ export const start = async () => {
       .register(fastifyCompress)
       .register(fastifyCors)
       .register(fastifyHelmet)
-      .register(router, { prefix: '/v1' });
+      .register(router, { prefix: '/api/v1' });
 
     app.addHook('onRequest', auth);
 

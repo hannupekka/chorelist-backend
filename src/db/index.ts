@@ -1,4 +1,4 @@
 import Knex from 'knex';
-import knexfile from './knexfile';
 
-export default Knex(knexfile);
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+export default Knex(require('./knexfile'));

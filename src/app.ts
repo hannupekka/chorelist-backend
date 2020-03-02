@@ -24,7 +24,7 @@ export const start = async () => {
 
     app.addHook('onRequest', auth);
 
-    await app.listen(PORT);
+    await app.listen(PORT, '0.0.0.0');
   } catch (err) {
     process.exit(1);
   }

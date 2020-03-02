@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db:
+    image: 'postgres:11'
+    container_name: 'chorelist-backend'
+    ports:
+      - '54320:5432'
+    volumes:
+      - chorelist-backend:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: chorelist
+volumes:
+  chorelist-backend:

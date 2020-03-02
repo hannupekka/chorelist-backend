@@ -1,0 +1,25 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    }
+  },
+  "extends": ["plugin:@typescript-eslint/recommended"],
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/interface-name-prefix": ["error", "always"],
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-this-alias": [
+      "error",
+      {
+        "allowedNames": ["self"]
+      }
+    ],
+    "eqeqeq": ["error", "always"],
+    "curly": "error"
+  }
+}

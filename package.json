@@ -1,0 +1,68 @@
+{
+  "name": "chorelist-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "clean": "rimraf dist",
+    "db:start": "docker-compose up -d",
+    "db:stop": "docker-dompose stop chorelist-backend",
+    "dev": "nodemon",
+    "lint": "eslint --ext .ts src",
+    "migrate": "knex migrate:latest --knexfile src/db/knexfile.ts",
+    "migrate:rollback": "knex migrate:rollback --knexfile src/db/knexfile.ts",
+    "migrate:make": "knex migrate:make --knexfile src/db/knexfile.ts",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hannupekka/chorelist-backend.git"
+  },
+  "author": "Hannu-Pekka Heinäjärvi <hannupekka@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hannupekka/chorelist-backend/issues"
+  },
+  "homepage": "https://github.com/hannupekka/chorelist-backend#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "fastify": "^2.12.1",
+    "fastify-compress": "^2.0.1",
+    "fastify-cors": "^3.0.2",
+    "fastify-graceful-shutdown": "^2.0.1",
+    "fastify-helmet": "^3.0.2",
+    "fastify-sensible": "^2.1.1",
+    "joi": "^14.3.1",
+    "knex": "^0.20.10",
+    "module-alias": "^2.2.2",
+    "pg": "^7.18.2"
+  },
+  "devDependencies": {
+    "@types/joi": "^14.3.4",
+    "@types/node": "^13.7.7",
+    "@typescript-eslint/eslint-plugin": "^2.21.0",
+    "@typescript-eslint/parser": "^2.21.0",
+    "eslint": "^6.8.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "nodemon": "^2.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.8.3"
+  },
+  "_moduleAliases": {
+    "~": "dist"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run typecheck"
+    }
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "prettier --write",
+      "npm run lint"
+    ]
+  }
+}

@@ -1,3 +1,6 @@
 export API_KEY=
 export DATABASE_URL=postgresql://user:password@localhost:54320/chorelist
+export EMAIL_TO=
+export EMAIL_FROM=
 export PORT=
+export SENDGRID_API_KEY=

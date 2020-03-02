@@ -1,3 +1,4 @@
+import 'ts-node/register';
 import config from '../config';
 
 const database = {

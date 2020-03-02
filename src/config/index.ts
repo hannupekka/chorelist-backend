@@ -1,5 +1,3 @@
-import path from 'path';
-import dotenv from 'dotenv';
 import Joi from 'joi';
 
 interface IConfig {
@@ -8,8 +6,7 @@ interface IConfig {
   PORT: number;
 }
 
-const env = dotenv.config({ path: path.resolve(path.join(__dirname, '..', '..', '.env')) });
-const { API_KEY, DATABASE_URL, PORT } = (env.parsed as unknown) as IConfig;
+const { API_KEY, DATABASE_URL, PORT } = (process.env as unknown) as IConfig;
 
 const schema = Joi.object({
   API_KEY: Joi.string()

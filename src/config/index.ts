@@ -7,6 +7,7 @@ interface IConfig {
   EMAIL_FROM: string;
   PORT: number;
   SENDGRID_API_KEY: string;
+  CHORELIST_FRONTEND_URL: string;
 }
 
 const {
@@ -16,6 +17,7 @@ const {
   EMAIL_FROM,
   PORT,
   SENDGRID_API_KEY,
+  CHORELIST_FRONTEND_URL,
 } = (process.env as unknown) as IConfig;
 
 const schema = Joi.object({
@@ -31,6 +33,9 @@ const schema = Joi.object({
     .required(),
   PORT: Joi.number().required(),
   SENDGRID_API_KEY: Joi.string().required(),
+  CHORELIST_FRONTEND_URL: Joi.string()
+    .uri()
+    .required(),
 });
 
 const config: IConfig = Joi.attempt(
@@ -41,6 +46,7 @@ const config: IConfig = Joi.attempt(
     EMAIL_FROM,
     PORT,
     SENDGRID_API_KEY,
+    CHORELIST_FRONTEND_URL,
   },
   schema
 );

@@ -4,3 +4,4 @@ export EMAIL_TO=
 export EMAIL_FROM=
 export PORT=
 export SENDGRID_API_KEY=
+export CHORELIST_FRONTEND_URL=http://localhost:8080

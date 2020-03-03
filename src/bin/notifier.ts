@@ -50,7 +50,7 @@ interface IChore {
           to: config.EMAIL_TO,
           from: config.EMAIL_FROM,
           subject: `[Chores] ${dueChoresCount} chores due today`,
-          html: `<p>${dueChoresCount} chores due today:</p><p>${choreList}</p><p>See you next time!</p>`,
+          html: `<p>${dueChoresCount} chores due today:</p><p>${choreList}</p><p>Go to <a href="${config.CHORELIST_FRONTEND_URL}" target="_blank" rel="noopener noreferrer">${config.CHORELIST_FRONTEND_URL}</a> to see all the chores.</p><p>See you next time!</p>`,
         });
       } catch (err) {
         throw err;

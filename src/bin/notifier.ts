@@ -29,7 +29,6 @@ interface IChore {
     const dueChores = chores.filter(chore => {
       const { schedule, done_at } = chore;
       const lastExecution = dayjs(done_at)
-        .add(1, 'day')
         .startOf('day')
         .toDate();
 

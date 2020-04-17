@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/hannupekka/chorelist-backend#readme",
   "dependencies": {
-    "@sendgrid/mail": "^6.5.3",
+    "@sendgrid/mail": "^7.0.1",
     "@types/joi": "^14.3.4",
     "@types/node": "^13.7.7",
     "cron-parser": "^2.13.0",

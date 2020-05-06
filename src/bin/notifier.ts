@@ -34,7 +34,9 @@ interface IChore {
 
       // Calculate next execution from the last execution.
       const parsed = cronParser.parseExpression(schedule, { currentDate: lastExecution });
-      const nextExecution = dayjs(parsed.next().toString()).startOf('day');
+      const nextExecution = dayjs(parsed.next().toString())
+        .add(1, 'day')
+        .startOf('day');
 
       const isDue = dayjs().isSameOrAfter(nextExecution, 'day');
       return isDue;

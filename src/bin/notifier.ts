@@ -1,4 +1,5 @@
 import 'module-alias/register';
+import axios from 'axios';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import cronParser from 'cron-parser';
@@ -62,6 +63,8 @@ interface IChore {
       console.log('No chores due today, see you tomorrow!');
     }
   }
+
+  await axios.get(config.SNITCH_URL);
 
   process.exit(0);
 })();

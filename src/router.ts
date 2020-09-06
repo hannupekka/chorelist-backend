@@ -1,18 +1,25 @@
 import { FastifyInstance } from 'fastify';
 import Joi, { SchemaLike } from 'joi';
 
-import * as choreHttp from '~/core/chore';
+import { auth } from '~/middleware';
+import * as choreHttp from '~/http/chore';
+import * as healthHttp from '~/http/health';
 
 const schemaCompiler = (schema: SchemaLike) => (data: unknown) => Joi.validate(data, schema);
 
 const router = async (fastify: FastifyInstance) => {
-  fastify.get('/chore', async () => {
+  fastify.get('/health', async () => {
+    return healthHttp.getHealth();
+  });
+
+  fastify.get('/chore', { onRequest: auth }, async () => {
     return choreHttp.getChores();
   });
 
   fastify.patch(
     '/chore/:id/done',
     {
+      onRequest: auth,
       schema: {
         params: Joi.object({
           id: Joi.number().required(),

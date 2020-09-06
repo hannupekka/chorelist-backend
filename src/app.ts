@@ -5,7 +5,6 @@ import fastifyCors from 'fastify-cors';
 import fastifyHelmet from 'fastify-helmet';
 import shutdown from 'fastify-graceful-shutdown';
 import config from '~/config';
-import { auth } from '~/middleware';
 import router from './router';
 
 const { PORT } = config;
@@ -21,8 +20,6 @@ export const start = async () => {
       .register(fastifyCors)
       .register(fastifyHelmet)
       .register(router, { prefix: '/api/v1' });
-
-    app.addHook('onRequest', auth);
 
     await app.listen(PORT, '0.0.0.0');
   } catch (err) {

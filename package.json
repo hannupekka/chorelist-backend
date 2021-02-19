@@ -17,10 +17,6 @@
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit"
   },
-  "engines": {
-    "node": ">=12.0.0",
-    "npm": ">=6.0.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/hannupekka/chorelist-backend.git"
@@ -48,7 +44,7 @@
     "joi": "^14.3.1",
     "knex": "^0.20.10",
     "module-alias": "^2.2.2",
-    "pg": "^7.18.2",
+    "pg": "^8.5.1",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
   },

@@ -2,6 +2,9 @@
   "name": "chorelist-backend",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "12"
+  },
   "main": "dist/index.js",
   "scripts": {
     "build": "npm run clean && tsc",
@@ -44,7 +47,7 @@
     "joi": "^14.3.1",
     "knex": "^0.20.10",
     "module-alias": "^2.2.2",
-    "pg": "^8.5.1",
+    "pg": "7.12.1",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
   },

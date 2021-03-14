@@ -6,7 +6,7 @@ module.exports = {
     min: 2,
     max: 10,
   },
-  connection: config.DATABASE_URL,
+  connection: `${config.DATABASE_URL}?ssl=true`,
   migrations: {
     directory: 'migrations',
   },

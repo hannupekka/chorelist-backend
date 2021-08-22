@@ -7,7 +7,7 @@ module.exports = {
     max: 10,
   },
   ssl: { rejectUnauthorized: false },
-  connection: `${config.DATABASE_URL}?ssl=true`,
+  connection: `${config.DATABASE_URL}`,
   migrations: {
     directory: 'migrations',
   },

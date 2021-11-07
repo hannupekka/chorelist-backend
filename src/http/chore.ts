@@ -7,3 +7,7 @@ export const getChores = async () => {
 export const patchChoreDone = async (id: string) => {
   return choreCore.patchChoreDone(id);
 };
+
+export const patchChoreSnoozed = async (id: string, weeks: number) => {
+  return choreCore.patchChoreSnoozed(id, weeks);
+};

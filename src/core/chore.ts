@@ -10,6 +10,7 @@ interface IChore {
   schedule: string;
   done_at: string;
   next_at: string;
+  snooze_until?: string;
 }
 
 export const getChores = async (): Promise<IChore[]> => {
@@ -26,7 +27,7 @@ export const getChores = async (): Promise<IChore[]> => {
       const parsed = cronParser.parseExpression(schedule, { currentDate: lastExecution });
       const nextScheduledExecution = dayjs(parsed.next().toString()).startOf('day');
 
-      // Check if chore has alreade been done today.
+      // Check if chore has already been done today.
       const alreadyDoneToday = dayjs(lastExecution).isSame(nextScheduledExecution, 'day');
       const nextExecution = alreadyDoneToday
         ? dayjs(parsed.next().toString()).startOf('day')
@@ -42,7 +43,20 @@ export const getChores = async (): Promise<IChore[]> => {
 
 export const patchChoreDone = async (id: string) => {
   const result = await knex('chore')
-    .update({ done_at: knex.fn.now() })
+    .update({ done_at: knex.fn.now(), snooze_until: null })
+    .where({ id })
+    .returning('*');
+
+  if (result.length !== 1) {
+    throw new httpErrors.NotFound();
+  }
+
+  return result[0];
+};
+
+export const patchChoreSnoozed = async (id: string, weeks: number) => {
+  const result = await knex('chore')
+    .update({ snooze_until: dayjs().add(weeks, 'week') })
     .where({ id })
     .returning('*');
 

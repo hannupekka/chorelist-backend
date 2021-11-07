@@ -33,6 +33,28 @@ const router = async (fastify: FastifyInstance) => {
       return choreHttp.patchChoreDone(id);
     }
   );
+
+  fastify.patch(
+    '/chore/:id/snooze/:weeks',
+    {
+      onRequest: auth,
+      schema: {
+        params: Joi.object({
+          id: Joi.number().required(),
+          weeks: Joi.number().required(),
+        }),
+      },
+      schemaCompiler,
+    },
+    async request => {
+      const { id, weeks } = request.params as {
+        id: string;
+        weeks: string;
+      };
+
+      return choreHttp.patchChoreSnoozed(id, parseInt(weeks));
+    }
+  );
 };
 
 export default router;

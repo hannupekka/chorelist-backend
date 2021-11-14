@@ -52,20 +52,20 @@ interface IChore {
 
     const dueChoresCount = dueChores.length;
     if (dueChoresCount > 0) {
-      // const choreList = dueChores.map(({ title }) => ` - ${title}`).join('<br />');
+      const choreList = dueChores.map(({ title }) => ` - ${title}`).join('<br />');
       console.log(`${dueChores.length} chores due today, sending notifications..`);
 
-      // try {
-      //   await sendMail.send({
-      //     to: (config.EMAIL_TO ?? []).split(','),
-      //     from: config.EMAIL_FROM,
-      //     subject: `[Chores] ${dueChoresCount} chores due today`,
-      //     html: `<p>${dueChoresCount} chores due today:</p><p>${choreList}</p><p>Go to <a href="${config.CHORELIST_FRONTEND_URL}" target="_blank" rel="noopener noreferrer">${config.CHORELIST_FRONTEND_URL}</a> to see all the chores.</p><p>See you next time!</p>`,
-      //   });
-      // } catch (err) {
-      //   console.error(err);
-      //   process.exit(1);
-      // }
+      try {
+        await sendMail.send({
+          to: (config.EMAIL_TO ?? []).split(','),
+          from: config.EMAIL_FROM,
+          subject: `[Chores] ${dueChoresCount} chores due today`,
+          html: `<p>${dueChoresCount} chores due today:</p><p>${choreList}</p><p>Go to <a href="${config.CHORELIST_FRONTEND_URL}" target="_blank" rel="noopener noreferrer">${config.CHORELIST_FRONTEND_URL}</a> to see all the chores.</p><p>See you next time!</p>`,
+        });
+      } catch (err) {
+        console.error(err);
+        process.exit(1);
+      }
     } else {
       console.log('No chores due today, see you tomorrow!');
     }
